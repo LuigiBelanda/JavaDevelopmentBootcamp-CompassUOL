@@ -7,6 +7,8 @@ public class nextLineTrap {
         Scanner scanner = new Scanner(System.in);
 
         // https://www.geeksforgeeks.org/why-is-scanner-skipping-nextline-after-use-of-other-next-functions/
+        // https://pt.stackoverflow.com/questions/165080/scanner-nextline-n%C3%A3o-pega-informa%C3%A7%C3%A3o-ap%C3%B3s-scanner-nextint
+        // https://www.devmedia.com.br/forum/erro-usando-metodo-nextline-em-java/509349
 
         // nextInt() example
         System.out.print("\nEnter your age, your friend's age, and your parent's age: ");
@@ -79,7 +81,7 @@ public class nextLineTrap {
         System.out.println("Favorite color combination: " + colorCombination);
 
 
-        
+
         scanner.close();
     }
 }
