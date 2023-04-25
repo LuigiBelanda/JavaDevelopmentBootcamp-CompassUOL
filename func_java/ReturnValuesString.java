@@ -23,6 +23,11 @@ public class ReturnValuesString {
     }
 
     public static double calculateArea(double length, double width) {
+        if (length < 0 || width < 0) {
+            System.out.println("INVALID DIMENSIONS");
+            System.exit(0);
+        }
+
         double area = width * length;
         return area;
     }
