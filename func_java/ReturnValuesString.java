@@ -24,6 +24,13 @@ public class ReturnValuesString {
         System.out.println(englishExplanation4);
     }
 
+    /**
+     * Function name: calculateArea 
+     * 
+     * @param length        (double)
+     * @param width         (double)
+     * @return              (double)
+     */
     public static double calculateArea(double length, double width) {
         if (length < 0 || width < 0) {
             System.out.println("INVALID DIMENSIONS");
@@ -34,6 +41,12 @@ public class ReturnValuesString {
         return area;
     }
 
+    /**
+     * Function name: explainArea
+     * 
+     * @param language      (string)
+     * @return              (string)
+     */
     public static String explainArea(String language) {
         switch (language) {
             case "English":
@@ -47,6 +60,15 @@ public class ReturnValuesString {
         }
     }
 
+    /**
+     * 
+     * Function name: printArea
+     * 
+     * @param length    (double)
+     * @param width     (double)
+     * @param area      (double)
+     * 
+     */
     public static void printArea(double length, double width, double area) {
         System.out.println("Width (" + width + ") * length (" + length + ") = " + area);
     }
