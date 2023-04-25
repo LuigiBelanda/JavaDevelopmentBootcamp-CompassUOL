@@ -100,7 +100,12 @@ public class logicalOperators {
         String option = "cash";
 
         boolean cashOrCredit = option.equals("cash") || option.equals("credit");
-        boolean notCashOrCredit = !(option.equals("cash") || option.equals("credit"));
+        
+        if (!(option.equals("cash") || option.equals("credit"))) {
+            System.out.println("Please choose another payment option");
+        } else {
+            System.out.println("Sold. Pleasure doing business with you!");
+        }
 
         // if payment option is NOT cash or credit: System.out.println("Please choose another payment option");
         // otherwise: System.out.println("Sold. Pleasure doing business with you!");
@@ -110,7 +115,12 @@ public class logicalOperators {
         char letter = 'A';
 
         boolean isVowel = (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U');
-        boolean notIsVowel = !((letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U'));
+
+        if (!((letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U'))) {
+            System.out.println("The letter " + letter + " is a consonant");
+        } else {
+            System.out.println("The letter " + letter + " is a vowel");
+        }
 
         // if letter is NOT a vowel: System.out.println("The letter " + letter + " is a consonant");
         // otherwise: System.out.println("The letter " + letter + " is a vowel");
@@ -120,7 +130,12 @@ public class logicalOperators {
         String move = "stay";
 
         boolean isHitOrStay = move.equals("hit") || move.equals("stay");
-        boolean notHitOrStay = !(move.equals("hit") || move.equals("stay")); 
+
+        if (!(move.equals("hit") || move.equals("stay"))) {
+            System.out.println("Please choose a valid move");
+        } else {
+            System.out.println("You win 10 bucks!");
+        }
 
         // if move is NOT hit or stay: System.out.println("Please choose a valid move");
         // otherwise: System.out.println("You win 10 bucks!");
