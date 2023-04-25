@@ -5,6 +5,8 @@ public class ReturnValuesString {
         double area1 = calculateArea(2, 3);
         System.out.println("\nArea 1: " + area1);
 
+        printArea(2, 3, area1);
+
         double area2 = calculateArea(5, 2);
         System.out.println("\nArea 2: " + area2);
 
@@ -43,5 +45,9 @@ public class ReturnValuesString {
             default:
                 return "\nLanguage not available";
         }
+    }
+
+    public static void printArea(double length, double width, double area) {
+        System.out.println("Width (" + width + ") * length (" + length + ") = " + area);
     }
 }
