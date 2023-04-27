@@ -1,5 +1,7 @@
 package list_collections.Equality;
 
+import java.util.Objects;
+
 public class City {
 
     private String name;
@@ -33,4 +35,21 @@ public class City {
     }
 
 
+    // Sobrescrevendo o método equals
+    @Override 
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof City)) {
+            return false;
+        }
+        City city = (City) o;
+        return Objects.equals(name, city.name) && population == city.population;
+    }
+
+    // Sempre que fazemos Override do equals, fazemos do hashCode também
+    @Override 
+    public int hashCode() {
+        return Objects.hash(name, population);
+    }
 }
