@@ -9,19 +9,10 @@ public class Main {
     public static void main(String[] args) {
 
         // Note que alguns métodos abaixo vem na realidade da classe PRODUCT
-        Shirt shirt = new Shirt();
-        shirt.setSize(Size.SMALL);
-        shirt.setBrand("Nike");
-        shirt.setPrice(49.99);
-        shirt.setColor("Blue");
+        Shirt shirt = new Shirt(10.99, "Red", "Nike", Size.SMALL);
         shirt.fold();
 
-        Pants pants = new Pants();
-        pants.setWaist(32);
-        pants.setLength(32);
-        pants.setColor("BLACK");
-        pants.setPrice(79.99);
-        pants.setBrand("LEVI'S");
+        Pants pants = new Pants(15.99, "Red", "Levi's", 32, 32);
         pants.fold();
 
     }   

@@ -7,6 +7,15 @@ public class Pants extends Product {
     private int waist;
     private int length;
 
+    // Constructor
+    public Pants(double price, String color, String brand, int waist, int length) {
+        // super - chama o construtor principal, superclass ou classe pai
+        // A palavra-chave super invoca o construtor pai para atualizar os campos herdados e o construtor filho atualiza os campos restantes.
+        super(price, color, brand);
+        this.waist = waist;
+        this.length = length;
+    }
+
     public int getWaist() {
         return this.waist;
     }
