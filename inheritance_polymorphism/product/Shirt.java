@@ -34,4 +34,9 @@ public class Shirt extends Product {
         System.out.println("Bring sleeves in");
         System.out.println("Fold from botton up");
     }
+
+    @Override
+    public void wear() {
+        System.out.println("The " + this.size + " shirt suits you well!");
+    }
 }

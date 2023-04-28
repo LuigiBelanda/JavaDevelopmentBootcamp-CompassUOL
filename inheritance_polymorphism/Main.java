@@ -18,6 +18,7 @@ public class Main {
     }   
 
     public static void productStore(Product product) {
-        System.out.println("Thank you for purchasing " + product.getBrand() + " " + product.getClass().getSimpleName().toLowerCase() + " " + " Your total comes to " + product.getPrice());
+        System.out.println("\nThank you for purchasing " + product.getBrand() + " " + product.getClass().getSimpleName().toLowerCase() + " " + " Your total comes to " + product.getPrice());
+        product.wear();
     }
 }

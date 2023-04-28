@@ -42,4 +42,9 @@ public abstract class Product {
     public void fold() {
         System.out.println("\nFolding my " + this.getBrand() + " " + this.getClass().getSimpleName());
     }
+
+    // Só podemos criar métodos ABSTRACT se a classe for ABSTRACT
+    // Esses métodos não tem corpo, pois cabe as classes que herdarem ele
+    // fazer um Override e sobrescrever este método;
+    public abstract void wear();
 }
