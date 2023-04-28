@@ -1,6 +1,9 @@
 package inheritance_polymorphism.product;
 
-public class Product {
+// Note que aqui temos uma classe ABSTRACT 
+// Não podem ser criados objetos diretamente dela, ela não 
+// pode ser instanciada
+public abstract class Product {
     private double price;
     private String color;
     private String brand;
