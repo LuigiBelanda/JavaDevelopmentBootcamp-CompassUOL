@@ -31,4 +31,11 @@ public class Pants extends Product {
     public void setLength(int length) {
         this.length = length;
     }
+
+    @Override
+    public void fold() {
+        System.out.println("\nHold pants upright");
+        System.out.println("Fold obe leg over the other");
+        System.out.println("Fold pants from bottom in thirds");
+    }
 }
