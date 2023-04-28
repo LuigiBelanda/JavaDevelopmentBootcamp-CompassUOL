@@ -1,7 +1,7 @@
 package package_import;
 
-import model.Game;
-import model.Team;
+import package_import.model.Game;
+import package_import.model.Team;
 
 public class Main {
 
