@@ -1,6 +1,7 @@
 package inheritance_polymorphism;
 
 import inheritance_polymorphism.product.Pants;
+import inheritance_polymorphism.product.Product;
 import inheritance_polymorphism.product.Shirt;
 import inheritance_polymorphism.product.Shirt.Size;
 
@@ -24,4 +25,8 @@ public class Main {
         pants.fold();
 
     }   
+
+    public static void productStore(Product product) {
+        System.out.println("Thank you for purchasing " + product.getBrand() + " " + product.getClass().getSimpleName().toLowerCase() + " " + " Your total comes to " + product.getPrice());
+    }
 }
