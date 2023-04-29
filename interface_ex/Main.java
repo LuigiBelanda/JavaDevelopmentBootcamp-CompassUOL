@@ -8,6 +8,8 @@ import interface_ex.pojo.Account;
 import interface_ex.pojo.Checking;
 import interface_ex.pojo.Credit;
 import interface_ex.repository.AccountRepository;
+import interface_ex.service.CheckingService;
+import interface_ex.service.CreditService;
 
 public class Main {
 
@@ -15,6 +17,10 @@ public class Main {
 
         // Iniciando o repositório
         AccountRepository repository = new AccountRepository();
+
+        // Serviços que iram intermediar as operações
+        CheckingService checkingService = new CheckingService(repository);
+        CreditService creditService = new CreditService(repository);
 
         // Assume these were obtained from user input.
         List<Account> accounts = Arrays.asList(
@@ -26,6 +32,11 @@ public class Main {
 
         // Salvando as contas
         accounts.forEach(account -> {
+            if (account instanceof Credit) {
+                creditService.createAccount((Credit)account);
+            } else {
+                checkingService.createAccount((Checking)account);
+            }
             repository.createAccount(account);
         });
 
