@@ -1,55 +1,73 @@
 package interface_ex;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import interface_ex.pojo.Account;
+import interface_ex.constants.AccountType;
+import interface_ex.constants.Transaction;
 import interface_ex.pojo.Checking;
 import interface_ex.pojo.Credit;
 import interface_ex.repository.AccountRepository;
+import interface_ex.service.AccountService;
 import interface_ex.service.CheckingService;
 import interface_ex.service.CreditService;
 
 public class Main {
 
+    static Path[] paths = new Path[] { 
+        Paths.get("interface_ex/data/accounts.txt"),
+        Paths.get("interface_ex/data/transactions.txt") 
+    };
+    
+    static AccountRepository accountRepository = new AccountRepository();
+    static CheckingService checkingService = new CheckingService(accountRepository);
+    static CreditService creditService = new CreditService(accountRepository);
+
     public static void main(String[] args) {
-
-        // Iniciando o repositório
-        AccountRepository repository = new AccountRepository();
-
-        // Serviços que iram intermediar as operações
-        CheckingService checkingService = new CheckingService(repository);
-        CreditService creditService = new CreditService(repository);
-
-        // Assume these were obtained from user input.
-        List<Account> accounts = Arrays.asList(
-                new Checking("A1234B", new BigDecimal("500.00")),
-                new Checking("E3456F", new BigDecimal("300.50")),
-                new Checking("I5678J", new BigDecimal("100.25")),
-                new Credit("A1534B", new BigDecimal("0.50")),
-                new Credit("G4567H", new BigDecimal("200.00")));
-
-        // Salvando as contas
-        accounts.forEach(account -> {
-            if (account instanceof Credit) {
-                creditService.createAccount((Credit)account);
-            } else {
-                checkingService.createAccount((Checking)account);
-            }
-            repository.createAccount(account);
-        });
-
-        // Recuperando as contas
-        Checking checking = (Checking) repository.retrieveAccount("A1234B");
-
-        // Mudando dados
-        checking.setBalance(checking.getBalance().add(new BigDecimal("100")));
-        repository.updateAccount(checking);
-
-        // Deletando conta
-        repository.deleteAccount("G4567H");
-
+        try {
+            loadAccounts();
+            applyTransactions();
+            finalTest();
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
+    public static void loadAccounts() throws IOException {
+        Files.lines(paths[0])
+                .forEach(line -> {
+                    String[] words = line.split(" ");
+                    if (words[0].equals(AccountType.CHECKING.toString())) {
+                        checkingService.createAccount(new Checking(words[1], new BigDecimal(words[2])));
+                    } else {
+                        creditService.createAccount(new Credit(words[1], new BigDecimal(words[2])));
+                    }
+                });
+    }
+
+    public static void applyTransactions() throws IOException {
+        Files.lines(paths[1])
+                .forEach(line -> {
+                    String[] words = line.split(" ");
+                    Boolean isChecking = words[0].equals(AccountType.CHECKING.toString());
+                    AccountService accountService = isChecking ? checkingService : creditService;
+                    Transaction transaction = Transaction.valueOf(words[2]);
+                    if (transaction.equals(Transaction.DEPOSIT)) {
+                        accountService.deposit(words[1], new BigDecimal(words[3]));
+                    } else {
+                        accountService.withdraw(words[1], new BigDecimal(words[3]));
+                    }
+                });
+    }
+
+    public static void finalTest() throws IOException {
+        System.out.println("Account A1234B Balance: " + checkingService.retrieveAccount("A1234B").getBalance());
+        System.out.println("Account E3456F Balance: " + checkingService.retrieveAccount("E3456F").getBalance());
+        System.out.println("Account I5678J Balance: " + checkingService.retrieveAccount("I5678J").getBalance());
+        System.out.println("Account C2345D Credit: " + creditService.retrieveAccount("C2345D").getCredit());
+        System.out.println("Account G4567H Credit: " + creditService.retrieveAccount("G4567H").getCredit());
+    }
 }
