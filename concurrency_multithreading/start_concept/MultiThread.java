@@ -13,7 +13,7 @@ public class MultiThread {
         Thread thread2 = new Thread(runnable);
 
         // Executando uma thread
-        thread2.run();
+        thread2.start();
 
         System.out.println("Doing other work on main thread");
 
